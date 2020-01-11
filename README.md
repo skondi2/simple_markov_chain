@@ -1,1 +1,1 @@
-# simple_markov_chain
+# Simple Markov Chain
