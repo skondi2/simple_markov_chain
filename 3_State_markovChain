@@ -1,0 +1,106 @@
+# CREDITS:
+# Title: Markov Chains in Python
+# Author : Sejal Jaiswal
+# Date : May 1, 2018
+# Availability : https://www.datacamp.com/community/tutorials/markov-chains-python-tutorial
+
+import numpy as np
+import random as rm
+
+# declare state space of possible desserts to eat
+stateSpaceSet = ["Cake", "Cheesecake", "Cookies"]
+
+# Possible transitions
+transitions = [ ["Ca-Ch", "Ca-Co", "Ca-Ca"], ["Ch-Ca", "Ch-Co", "Ch-Ch"], ["Co-Ca", "Co-Ch", "Co-Co"] ]
+
+# transition probabilities
+transitionMatrix = [ [.2, .1, .7], [.1, .1, .8], [.5, .3, .2] ]
+
+startDessert = input("Input starting dessert : ")
+days = input("Input number of days: ")
+createRandomMenu(startDessert, days)
+
+def createRandomMenu(startDessert, days):
+    print("Starting dessert is " + startDessert)
+
+    currDessert = startDessert
+
+    # list of desserts chosen each day
+    dessertPerDay = [startDessert]
+
+    daysPassed = 0
+    prob = 1
+
+    while daysPassed != days:
+
+        if currDessert == "Cake":
+
+            newDessert = np.random.choice(transitions[0], replace="True", p=transitionMatrix[0])
+
+            if newDessert == "Ca-Ch":
+                prob *= .2
+                dessertPerDay.append("Cheesecake")
+                currDessert = "Cheesecake"
+
+            elif newDessert == "Ca-Co":
+                prob *= .1
+                dessertPerDay.append("Cookie")
+                currDessert = "Cookie"
+
+            elif newDessert == "Ca-Ca":
+                prob *= .7
+                dessertPerDay.append("Cake")
+
+        elif currDessert == "Cheesecake":
+
+            newDessert = np.random.choice(transitions[1], replace="True", p=transitionMatrix[1])
+
+            if newDessert == "Ch-Ca":
+                currDessert = "Cake"
+                dessertPerDay.append("Cake")
+                prob *= .1
+
+            elif newDessert == "Ch-Co":
+                currDessert = "Cookie"
+                dessertPerDay.append("Cookie")
+                prob *= .1
+
+            elif newDessert == "Ch-Ch":
+                dessertPerDay.append("Cheesecake")
+                prob *= .8
+
+        elif currDessert == "Cookie":
+
+            newDessert = np.random.choice(transitions[2], replace="True", p=transitionMatrix[2])
+
+            if newDessert == "Co-Ca":
+                currDessert = "Cake"
+                prob *= .5
+                dessertPerDay.append("Cake")
+
+            elif newDessert == "Co-Ch":
+                currDessert = "Cheesecake"
+                prob *= .3
+                dessertPerDay.append("Cheesecake")
+
+            elif newDessert == "Co-Co":
+                prob *= .2
+                dessertPerDay.append("Cookie")
+
+        daysPassed += 1
+
+    print("Possible dessert menu : " + str(dessertPerDay))
+    print("Ending dessert after " + str(days) + " is " + currDessert)
+    print("Probability of this dessert menu sequence : " + str(prob))
+
+
+
+
+
+
+
+
+
+
+
+
