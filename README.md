@@ -5,3 +5,9 @@ Python terminal-based program that emulates 3 state markov chain model and calcu
 starting state and number of transitions, and with this information and the current transition probability matrix, the ending state and its 
 likelihood is produced.
 
+## Credit:
+Title: Markov Chains in Python
+Author : Sejal Jaiswal
+Date : May 1, 2018
+Availability : https://www.datacamp.com/community/tutorials/markov-chains-python-tutorial
+
