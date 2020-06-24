@@ -6,8 +6,8 @@ starting state and number of transitions, and with this information and the curr
 likelihood is produced.
 
 ## Credit:
-Title: Markov Chains in Python
-Author : Sejal Jaiswal
-Date : May 1, 2018
+Title: Markov Chains in Python,
+Author : Sejal Jaiswal,
+Date : May 1, 2018,
 Availability : https://www.datacamp.com/community/tutorials/markov-chains-python-tutorial
 
